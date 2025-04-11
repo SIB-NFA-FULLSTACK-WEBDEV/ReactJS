@@ -6,7 +6,7 @@ function Navbar() {
           {/* Kiri: Nama Aplikasi */}
           <div className="col-md-3">
             <a href="/" className="d-inline-flex text-dark text-decoration-none fs-4 fw-bold">
-              MyReactApp
+              React App
             </a>
           </div>
   
