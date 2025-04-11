@@ -33,7 +33,7 @@ function Team() {
                 alt="Member 2"
               />
               <div className="card-body text-center">
-                <h5 className="card-title">Min Yoongi</h5>
+                <h5 className="card-title">Qian Kun</h5>
                 <p className="card-text">UI/UX Designer</p>
               </div>
             </div>
