@@ -1,16 +1,22 @@
-import { Link } from "react-router";
-
-  const books = [
-  { id: 1, title: "Book 1", description: "This is a wider card...", image: "https://picsum.photos/id/1011/300/225" },
-  { id: 2, title: "Book 2", description: "This content is a little bit longer.", image: "https://picsum.photos/id/1012/300/225" },
-  { id: 3, title: "Book 3", description: "A short description...", image: "https://picsum.photos/id/1013/300/225" },
-  { id: 4, title: "Book 4", description: "This is a wider card...", image: "https://picsum.photos/id/1014/300/225" },
-  { id: 5, title: "Book 5", description: "This content is a little bit longer.", image: "https://picsum.photos/id/1015/300/225" },
-  { id: 6, title: "Book 6", description: "A short description...", image: "https://picsum.photos/id/1016/300/225" }
-];
-
+import React, { useState } from "react";
+import booksData from "../../../Utils/books"; // pastikan nama file & path benar
 
 export default function ProductList() {
+  const [books, setBooks] = useState(booksData);
+
+  const handleAddBook = () => {
+    const newBook = {
+      id: books.length + 1,
+      title: "Buku Tambahan",
+      author: "Penulis Baru",
+      year: 2025,
+      description: "Ini adalah buku yang ditambahkan secara dinamis.",
+      image: "https://via.placeholder.com/300x225.png?text=Buku+Baru"
+    };
+
+    setBooks([...books, newBook]);
+  };
+
   return (
     <>
       <section className="py-5 text-center container">
@@ -23,13 +29,17 @@ export default function ProductList() {
               short so folks don’t simply skip over it entirely.
             </p>
             <p>
-              <Link to="#" className="btn btn-primary my-2 m-2">
+              <a href="#" className="btn btn-primary my-2 m-2">
                 Views
-              </Link>
-              <Link to="#" className="btn btn-secondary my-2">
+              </a>
+              <a href="#" className="btn btn-secondary my-2">
                 Other Book
-              </Link>
+              </a>
             </p>
+            {/* Tombol Tambah Buku */}
+            <button onClick={handleAddBook} className="btn btn-success mt-3">
+              Tambah Buku
+            </button>
           </div>
         </div>
       </section>
@@ -38,15 +48,12 @@ export default function ProductList() {
         <div className="container">
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             {books.map((book) => (
-              <div className="col" key={book.id}>
+              <div key={book.id} className="col">
                 <div className="card shadow-sm">
-                  <div className="p-3">
-                    <h5 className="card-title text-center">{book.title}</h5>
-                  </div>
                   <img
-                    className="card-img-top"
+                    className="img-fluid"
                     src={book.image}
-                    alt={`Thumbnail for ${book.title}`}
+                    alt={book.title}
                     style={{
                       width: "100%",
                       height: "225px",
@@ -55,19 +62,14 @@ export default function ProductList() {
                       borderTopRightRadius: "0.25rem"
                     }}
                   />
-
                   <div className="card-body">
+                    <h5 className="card-title">{book.title}</h5>
                     <p className="card-text">{book.description}</p>
                     <div className="d-flex justify-content-between align-items-center">
                       <div className="btn-group">
-                        <button type="button" className="btn btn-sm btn-outline-secondary">
-                          View
-                        </button>
-                        <button type="button" className="btn btn-sm btn-outline-secondary">
-                          Edit
-                        </button>
+                        <p>{book.author}</p>
                       </div>
-                      <small className="text-body-secondary">9 mins</small>
+                      <small className="text-body-secondary">{book.year}</small>
                     </div>
                   </div>
                 </div>
